@@ -1,11 +1,7 @@
 <template lang="html">
   <div>
     <h2>Tracer Study</h2>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <router-view></router-view>
-      </div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
