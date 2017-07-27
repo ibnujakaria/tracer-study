@@ -9,8 +9,13 @@
 
 <script>
 import Navbar from '@/components/frontend/partials/Navbar'
+import Snackbar from 'snackbar-js'
+
 export default {
   name: 'app',
+  mounted () {
+    Snackbar.create().setStyle('center').setText('Selamat datang! :)').show()
+  },
   components: {Navbar}
 }
 </script>

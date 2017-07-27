@@ -49,6 +49,7 @@
       </div>
       <div class="panel-body" v-else>
         <h3>Data tidak ditemukan</h3>
+        <router-link class="btn btn-primary" to="/tracer-study/create">Masukkan Data</router-link>
       </div>
     </div>
     <div class="row" v-if="student">
@@ -121,6 +122,13 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    this.$http.get('http://localhost/api/v1/students').then((response) => {
+      alert('success')
+    }, (response) => {
+      alert('error!')
+    })
   },
   computed: {
     student () {
