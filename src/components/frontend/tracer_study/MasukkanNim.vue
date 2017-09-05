@@ -8,7 +8,7 @@
       <div class="panel-body">
         <form class="form" @submit.prevent="submit">
           <div class="form-group">
-            <label>Masukkan NRP</label>
+            <label>Masukkan Nim</label>
             <input v-model="nim" class="form-control" type="text" name="nrp" placeholder="Masukkan nim" autofocus>
           </div>
           <div class="text-right">

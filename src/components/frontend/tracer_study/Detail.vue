@@ -1,10 +1,5 @@
 <template lang="html">
   <div>
-    <ol class="breadcrumb">
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/tracer-study">Tracer Study</router-link></li>
-      <li><router-link :to="'/tracer-study/' + $route.params.nim">{{$route.params.nim}}</router-link></li>
-    </ol>
     <div class="panel panel-default">
       <div class="panel-body" v-if="student">
         <h3>{{student.nama}} <small>{{student.nim}}</small> <button class="btn btn-small btn-default"><i class="fa fa-pencil"></i></button></h3>
@@ -49,7 +44,7 @@
       </div>
       <div class="panel-body" v-else>
         <h3>Data tidak ditemukan</h3>
-        <router-link class="btn btn-primary" to="/tracer-study/create">Masukkan Data</router-link>
+        <router-link class="btn btn-primary" :to="'/tracer-study/create?nim=' + $route.params.nim">Masukkan Data</router-link>
       </div>
     </div>
     <div class="row" v-if="student">
@@ -124,11 +119,6 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('http://localhost/api/v1/students').then((response) => {
-      alert('success')
-    }, (response) => {
-      alert('error!')
-    })
   },
   computed: {
     student () {

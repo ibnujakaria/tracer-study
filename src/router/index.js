@@ -4,6 +4,7 @@ import Welcome from '@/components/frontend/Welcome'
 import TracerStudyIndex from '@/components/frontend/tracer_study/Index'
 import TracerStudyMasukkanNim from '@/components/frontend/tracer_study/MasukkanNim'
 import TracerStudyDetail from '@/components/frontend/tracer_study/Detail'
+import TracerStudyCreate from '@/components/frontend/tracer_study/Create'
 
 Vue.use(Router)
 
@@ -23,8 +24,12 @@ export default new Router({
           component: TracerStudyMasukkanNim
         },
         {
+          path: 'create',
+          component: TracerStudyCreate
+        },
+        {
           name: 'tracer-study.detail',
-          path: ':nim',
+          path: 'detail/:nim',
           component: TracerStudyDetail
         }
       ]
