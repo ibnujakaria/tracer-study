@@ -9,6 +9,7 @@
       </ol> -->
       <div class="row">
         <div class="col-md-3">
+          <!-- <h3>Menu</h3> -->
           <div class="list-group">
             <a href="#/tracer-study" class="list-group-item">Cari Mahasiswa</a>
             <a href="#/tracer-study/create" class="list-group-item">Masukkan Data</a>

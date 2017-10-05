@@ -5,10 +5,12 @@ import TracerStudyIndex from '@/components/frontend/tracer_study/Index'
 import TracerStudyMasukkanNim from '@/components/frontend/tracer_study/MasukkanNim'
 import TracerStudyDetail from '@/components/frontend/tracer_study/Detail'
 import TracerStudyCreate from '@/components/frontend/tracer_study/Create'
+import AuthLogin from '@/components/frontend/auth/Login'
+import store from '../store/index.js'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   routes: [
     {
       path: '/',
@@ -25,7 +27,10 @@ export default new Router({
         },
         {
           path: 'create',
-          component: TracerStudyCreate
+          component: TracerStudyCreate,
+          meta: {
+            auth: true
+          }
         },
         {
           name: 'tracer-study.detail',
@@ -33,6 +38,26 @@ export default new Router({
           component: TracerStudyDetail
         }
       ]
+    },
+    {
+      path: '/auth/login',
+      component: AuthLogin
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  if (to.meta.auth && !store.getters.auth) {
+    next({
+      path: '/auth/login',
+      query: {
+        to: to.path
+      }
+    })
+  } else {
+    next()
+  }
+})
+
+export default router
