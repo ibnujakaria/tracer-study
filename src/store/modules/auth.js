@@ -41,10 +41,10 @@ export default {
     LOGIN (context, payload) {
       return Vue.http.post('login', payload).then((response) => {
         console.log(response.body)
-        // context.commit('LOGIN', {
-        //   user: response.body.result.user,
-        //   token: response.body.result.token
-        // })
+        context.commit('LOGIN', {
+          user: response.body.message,
+          token: response.body.api_token
+        })
         return response
       }, (response) => {
         return response

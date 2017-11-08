@@ -1,22 +1,19 @@
 <template lang="html">
   <div>
-    <ol class="breadcrumb">
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="#">Tracer Study</router-link></li>
-    </ol>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <form class="form" @submit.prevent="submit">
-          <div class="form-group">
-            <label>Masukkan Nim</label>
-            <input v-model="nim" class="form-control" type="text" name="nrp" placeholder="Masukkan nim" autofocus>
-          </div>
-          <div class="text-right">
-            <button class="btn btn-primary" type="submit">Lanjut</button>
-          </div>
-        </form>
-      </div>
+    <div class="title-header">
+      <h3>Cari Mahasiswa</h3>
+      <p>Lihat data studi mahasiswa dengan memasukkan nimnya.</p>
     </div>
+    <hr>
+    <form class="form" @submit.prevent="submit">
+      <div class="form-group">
+        <label>Masukkan Nim</label>
+        <input v-model="nim" class="form-control" type="text" name="nrp" placeholder="Masukkan nim" autofocus>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-primary" type="submit">Lanjut</button>
+      </div>
+    </form>
   </div>
 </template>
 

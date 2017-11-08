@@ -18,7 +18,7 @@
           </div>
           <div class="row">
             <div class="col-sm-6">
-              Tidak punya akun? <a href="">Register</a>
+              Tidak punya akun? <router-link to="/auth/register">Register</router-link>
             </div>
             <div class="col-sm-6">
               <div class="text-right">
@@ -44,7 +44,11 @@
     },
     methods: {
       register () {
-        this.$store.dispatch('LOGIN', this.form)
+        this.$store.dispatch('LOGIN', this.form).then(result => {
+          if (result.status === 200) {
+            this.$router.push('/')
+          }
+        })
       }
     }
   }

@@ -7,6 +7,11 @@ Vue.use(Vuex)
 const STORE = new Vuex.Store({
   modules: {
     auth
+  },
+  actions: {
+    bootstrap (context) {
+      context.dispatch('GET_AUTHENTICATED_USER')
+    }
   }
 })
 

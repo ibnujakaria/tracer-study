@@ -6,6 +6,8 @@ import TracerStudyMasukkanNim from '@/components/frontend/tracer_study/MasukkanN
 import TracerStudyDetail from '@/components/frontend/tracer_study/Detail'
 import TracerStudyCreate from '@/components/frontend/tracer_study/Create'
 import AuthLogin from '@/components/frontend/auth/Login'
+import AuthRegister from '@/components/frontend/auth/Register'
+import AuthLogout from '@/components/frontend/auth/Logout'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -41,7 +43,24 @@ let router = new Router({
     },
     {
       path: '/auth/login',
-      component: AuthLogin
+      component: AuthLogin,
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/auth/register',
+      component: AuthRegister,
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/auth/logout',
+      component: AuthLogout,
+      meta: {
+        auth: true
+      }
     }
   ]
 })
@@ -54,6 +73,10 @@ router.beforeEach((to, from, next) => {
       query: {
         to: to.path
       }
+    })
+  } else if (to.meta.guest && store.getters.auth) {
+    next({
+      path: '/'
     })
   } else {
     next()

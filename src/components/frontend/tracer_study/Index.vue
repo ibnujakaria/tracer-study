@@ -1,6 +1,5 @@
 <template lang="html">
   <div>
-    <h2>Tracer Study</h2>
     <router-view></router-view>
   </div>
 </template>
