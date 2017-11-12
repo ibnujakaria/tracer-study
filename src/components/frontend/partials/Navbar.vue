@@ -21,7 +21,7 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><router-link to="/tracer-study/mahasiswa/create">Tambah Mahasiswa</router-link></li>
+                  <li><router-link to="/tracer-study/create">Tambah Mahasiswa</router-link></li>
                   <li><router-link to="/tracer-study/mahasiswa/create">Import Mahasiswa (Excel)</router-link></li>
                 </ul>
               </li>
