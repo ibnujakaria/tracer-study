@@ -45,14 +45,16 @@ export default {
           user: response.body.message,
           token: response.body.api_token
         })
+        context.dispatch('GET_AUTHENTICATED_USER')
         return response
       }, (response) => {
         return response
       })
     },
     GET_AUTHENTICATED_USER (context) {
-      return Vue.http.get('auth', {headers: {Authorization: 'Bearer ' + context.state.token}}).then((response) => {
-        context.commit('SET_AUTHENTICATED_USER', response.body.result.user)
+      let params = {params: {api_token: context.state.token}}
+      return Vue.http.get('user/logged_in/' + context.state.token, params).then((response) => {
+        context.commit('SET_AUTHENTICATED_USER', response.body.message)
         return response
       }, (response) => {
         // if gagal?

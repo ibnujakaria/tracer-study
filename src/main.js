@@ -9,7 +9,9 @@ import store from './store/index'
 Vue.use(VueResource)
 
 Vue.config.productionTip = true
-Vue.http.options.root = 'http://localhost:8000'
+Vue.http.options.root = 'http://localhost:8000/api/v1'
+
+store.dispatch('bootstrap')
 
 /* eslint-disable no-new */
 new Vue({
