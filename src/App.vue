@@ -41,4 +41,27 @@ export default {
     -webkit-box-flex: 1;
     flex: 1 100%;
   }
+
+  .loading-container {
+    position: relative;
+  }
+
+  .loading {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform-style: visibility opacity;
+    transition-duration: 0.3s;
+    z-index: 99;
+  }
+
+  .loading.show {
+    visibility: visible;
+    opacity: 0.5;
+  }
 </style>

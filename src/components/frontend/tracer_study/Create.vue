@@ -6,43 +6,14 @@
         <div class="form-wizard">        
           <div class="row">
             <div class="col-md-3">
-              <div class="menu">
-                <ul>
-                  <li>
-                    <a :class="{active: step === 1}">
-                      Pribadi <i class="fa fa-chevron-right"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a :class="{active: step === 2}">
-                      Akademik <i class="fa fa-chevron-right"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a :class="{active: step === 3}">
-                      Pekerjaaan <i class="fa fa-chevron-right"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a :class="{active: step === 4}">
-                      Foto <i class="fa fa-chevron-right"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <insert-step :step="step"></insert-step>
             </div>
             <div class="col-md-9">
               <div class="form-content">
                 <div>
-                  <input-data-pribadi v-if="step === 1" :form="form"></input-data-pribadi>
+                  <input-data-pribadi @inserted="nextStep" @previous="previousStep" v-if="step === 1" :form="form"></input-data-pribadi>
                   <input-data-akademik v-else-if="step === 2" :form="form"></input-data-akademik>
                   <input-data-pekerjaan v-else-if="step === 3" :form="form"></input-data-pekerjaan>
-                </div>
-                <div style="position: absolute; right: 35px; bottom: 20px">
-                  <div class="btn-group">
-                    <button class="btn btn-default" @click="previousStep">Back</button>
-                    <button class="btn btn-primary" @click="nextStep">Next</button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -57,6 +28,7 @@
   import InputDataPribadi from './partials/InputDataPribadi'
   import InputDataAkademik from './partials/InputDataAkademik'
   import InputDataPekerjaan from './partials/InputDataPekerjaan'
+  import InsertStep from './partials/InsertStep'
 
   export default {
     data () {
@@ -83,7 +55,7 @@
         }
       }
     },
-    components: {InputDataPribadi, InputDataAkademik, InputDataPekerjaan}
+    components: {InputDataPribadi, InputDataAkademik, InputDataPekerjaan, InsertStep}
   }
 </script>
 
@@ -103,43 +75,6 @@
     border: 1px solid rgb(240, 240, 240);
     border-left: none;
     min-height: 500px;
-  }
-
-  .menu {
-    margin-right: -30px;
-    padding-top: 15px;
-  }
-
-  .menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .menu ul a {
-    cursor: pointer;
-    display: block;
-    padding: 10px;
-    padding-left: 20px;
-  }
-
-  .menu ul a.active {
-    text-decoration: none;
-    background-color: #337ab7;
-    color: white;
-  }
-
-  .menu ul a:hover {
-    text-decoration: none;
-  }
-
-  .menu ul a i.fa {
-    float: right;
-    color: rgb(140, 140, 140);
-  }
-
-  .menu a.active .fa {
-    color: white;
   }
 
 </style>

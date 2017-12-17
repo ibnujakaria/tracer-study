@@ -1,0 +1,5 @@
+1. Menu daftar project dipindah keluar. Diganti "Report Project"
+2. Ada tombol detil tiap project. Arahnya ke nomor 3.
+3. Halaman detil project, ada dua tab. Tab pertama berisi "Overview" dari project. Tab yang kedua berisi investor yang sudah masuk alias sudah beres semua pembayarannya.
+4. Overview project berisi informasi semisal: progress bar, jumlah investor, total investasi yang masuk, kekurangan dana, dll (intinya gambaran umum)
+5. Tambah menu khusus: "Investasi Baru". Ditaruh Luar. Fungsinya untuk management status investasi mulai dari pending -> konfirmasi -> dst
