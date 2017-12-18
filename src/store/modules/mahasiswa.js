@@ -1,11 +1,19 @@
 import Vue from 'vue'
+import listPekerjaan from '../const/list-pekerjaan'
 
 export default {
   state: {
     form: {
       dataPribadi: {nim: null, nama: null, alamat: null, no_telepon: null},
       dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
-      dataFoto: {foto: null}
+      dataFoto: {foto: null},
+      dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
+    },
+    pekerjaan: listPekerjaan
+  },
+  getters: {
+    getPekerjaanByKey: (state) => (key) => {
+      return state.pekerjaan.find(pekerjaan => pekerjaan.key === key)
     }
   },
   mutations: {

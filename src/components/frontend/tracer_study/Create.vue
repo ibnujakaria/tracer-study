@@ -4,9 +4,10 @@
       <div class="col-md-12">
         <div v-if="!success">
           <h2>Tambah Mahasiswa</h2>
+          <hr style="opacity: 0">
           <!-- <pre>{{$store.state.mahasiswa.form}}</pre> -->
           <div class="form-wizard">        
-            <div class="row">
+            <div class="row" style="margin-bottom: 100px">
               <div class="col-md-3">
                 <insert-step :step="step"></insert-step>
               </div>
@@ -104,6 +105,7 @@
     border: 1px solid rgb(240, 240, 240);
     border-left: none;
     min-height: 500px;
+    padding-bottom: 80px;
   }
 
 </style>
