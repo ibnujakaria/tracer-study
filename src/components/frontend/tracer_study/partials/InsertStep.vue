@@ -48,12 +48,18 @@
     display: block;
     padding: 10px;
     padding-left: 20px;
+    color: rgb(150, 150, 150);
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
   }
 
   .menu ul a.active {
     text-decoration: none;
-    background-color: #337ab7;
+    /*background-color: #337ab7;*/
+    background-color: rgb(80, 80, 80);
     color: white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   }
 
   .menu ul a:hover {
