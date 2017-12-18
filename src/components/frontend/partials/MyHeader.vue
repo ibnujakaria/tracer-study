@@ -4,10 +4,17 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-10 col-sm-offset-1">
-            <h1>Menjaga data alumni agar tidak hilang.</h1>
-            <p>
-              Platform Tracer Study ini digunakan sebagai tempat/portal di mana semua data alumni tersimpan di dalamnya. Data bisa digunakan untuk melihat pekerjaan alumni, data akademik, melanjutkan studi atau tidak, dan sebagainya.
-            </p>
+            <div class="row">
+              <div class="col-sm-8">
+                <h1>Menjaga data alumni agar tidak hilang.</h1>
+                <p>
+                  Platform Tracer Study ini digunakan sebagai tempat/portal di mana semua data alumni tersimpan di dalamnya. Data bisa digunakan untuk melihat pekerjaan alumni, data akademik, melanjutkan studi atau tidak, dan sebagainya.
+                </p>
+              </div>
+              <div class="col-sm-4">
+                <img src="../../../assets/mortarboard.png" style="width: 100%">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -27,11 +34,11 @@
   }
 
   header h1 {
-    font-size: 45pt;
+    font-size: 40pt;
   }
 
   header p {
-    font-size: 20pt;
+    font-size: 15pt;
     color: rgb(150, 150, 150);
   }
 </style>
