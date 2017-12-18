@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="">
     <div class="row">
       <div class="col-md-12">
         <div v-if="!success">
@@ -50,6 +50,12 @@
         loading: false,
         success: false
       }
+    },
+    mounted () {
+      this.$store.commit('setMahasiswaCreateForm', {
+        key: 'dataPribadi.nim',
+        value: this.$route.query.nim
+      })
     },
     methods: {
       changeStep (step) {
