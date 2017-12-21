@@ -52,6 +52,18 @@ export default {
         return response
       })
     },
+    insertMahasiswaPekerjaan (context) {
+      let url = 'mahasiswa/pekerjaan?api_token=' + context.getters.token
+      let payload = JSON.parse(JSON.stringify(context.state.form.dataPekerjaan))
+      payload.nim = context.state.form.dataPribadi.nim
+
+      return Vue.http.post(url, payload).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
     insertMahasiswaFoto (context) {
       let url = 'mahasiswa/foto?api_token=' + context.getters.token
       let payload = JSON.parse(JSON.stringify(context.state.form.dataFoto))
@@ -76,13 +88,19 @@ export default {
             return response
           }
 
-          return context.dispatch('insertMahasiswaFoto').then(response => {
+          return context.dispatch('insertMahasiswaPekerjaan').then(response => {
             if (response.status !== 200) {
               return response
             }
 
-            context.commit('resetMahasiswaCreateForm')
-            return response
+            return context.dispatch('insertMahasiswaFoto').then(response => {
+              if (response.status !== 200) {
+                return response
+              }
+
+              context.commit('resetMahasiswaCreateForm')
+              return response
+            })
           })
         })
       })

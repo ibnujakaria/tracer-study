@@ -9,8 +9,8 @@ import store from './store/index'
 Vue.use(VueResource)
 
 Vue.config.productionTip = true
-Vue.http.options.root = 'http://tracer-study-api.jagongoding.com/api/v1'
-// Vue.http.options.root = 'http://localhost:8000/api/v1'
+// Vue.http.options.root = 'http://api.tracer-study.jagongoding.com/api/v1'
+Vue.http.options.root = 'http://localhost:8000/api/v1'
 
 store.dispatch('bootstrap')
 
