@@ -22,11 +22,23 @@ export default {
 </script>
 
 <style>
+  body {
+    background-color: rgb(240, 240, 240);
+  }
+
   html, body {
     font-family: 'Roboto', sans-serif;
   }
   h1, h2, h3,  h4, h5, h6 {
     margin-top: 0;
+  }
+
+  .box {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 10px;
   }
 
   .header-title p {

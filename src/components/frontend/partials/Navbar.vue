@@ -22,7 +22,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><router-link to="/tracer-study/create">Tambah Mahasiswa</router-link></li>
-                  <li><router-link to="/tracer-study/mahasiswa/create">Import Mahasiswa (Excel)</router-link></li>
+                  <li><router-link to="/tracer-study/import-excel">Import Mahasiswa (Excel)</router-link></li>
                 </ul>
               </li>
               <li class="dropdown">
