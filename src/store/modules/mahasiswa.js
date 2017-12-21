@@ -30,6 +30,15 @@ export default {
     }
   },
   actions: {
+    cariMahasiswa (context, nim) {
+      let url = 'mahasiswa/detail/' + nim
+      return Vue.http.get(url).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
     insertMahasiswaPribadi (context) {
       let url = 'mahasiswa/pribadi?api_token=' + context.getters.token
 
