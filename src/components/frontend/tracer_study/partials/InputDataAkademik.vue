@@ -21,7 +21,9 @@
       </div>
       <div class="form-group">
         <label>Tanggal Lulus</label>
-        <input class="form-control" type="text" placeholder="Tanggal Lulus" v-model="tanggalLulus">
+        <!-- <pre>{{tanggalLulus}}</pre> -->
+        <!-- <input class="form-control" type="text" placeholder="Tanggal Lulus" v-model="tanggalLulus"> -->
+        <datepicker input-class="form-control" placeholder="Tanggal Lahir" v-model="tanggalLulus"></datepicker>
       </div>
       <div class="form-group">
         <label>Nilai IPK</label>
@@ -38,6 +40,8 @@
 </template>
 
 <script type="text/javascript">
+  import Datepicker from 'vuejs-datepicker'
+
   export default {
     computed: {
       prodi: {
@@ -96,6 +100,7 @@
       previous () {
         this.$emit('previous')
       }
-    }
+    },
+    components: {Datepicker}
   }
 </script>

@@ -4,7 +4,7 @@ import listPekerjaan from '../const/list-pekerjaan'
 export default {
   state: {
     form: {
-      dataPribadi: {nim: null, nama: null, alamat: null, no_telepon: null},
+      dataPribadi: {nim: null, nama: null, alamat: null, no_telepon: null, tempat_lahir: null, tanggal_lahir: null},
       dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
       dataFoto: {foto: null},
       dataPekerjaan: {status_pekerjaan: null, keterangan: {}}

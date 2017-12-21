@@ -16,6 +16,14 @@
         <input class="form-control" type="text" placeholder="Nomor Telepon" v-model="noTelepon">
       </div>
       <div class="form-group">
+        <label>Tempat Lahir</label>
+        <input class="form-control" type="text" placeholder="Tempat Lahir" v-model="tempatLahir">
+      </div>
+      <div class="form-group">
+        <label>Tempat Lahir</label>
+        <datepicker input-class="form-control" placeholder="Tanggal Lahir" v-model="tanggalLahir"></datepicker>
+      </div>
+      <div class="form-group">
         <label>Alamat Rumah</label>
         <textarea class="form-control" type="text" placeholder="Alamat Rumah" v-model="alamat"></textarea>
       </div>
@@ -30,6 +38,7 @@
 </template>
 
 <script type="text/javascript">
+  import Datepicker from 'vuejs-datepicker'
   export default {
     data () {
       return {
@@ -69,6 +78,22 @@
           this.$store.commit('setMahasiswaCreateForm', {key: 'dataPribadi.alamat', value})
         }
       },
+      tempatLahir: {
+        get () {
+          return this.$store.state.mahasiswa.form.dataPribadi.tempat_lahir
+        },
+        set (value) {
+          this.$store.commit('setMahasiswaCreateForm', {key: 'dataPribadi.tempat_lahir', value})
+        }
+      },
+      tanggalLahir: {
+        get () {
+          return this.$store.state.mahasiswa.form.dataPribadi.tanggal_lahir
+        },
+        set (value) {
+          this.$store.commit('setMahasiswaCreateForm', {key: 'dataPribadi.tanggal_lahir', value})
+        }
+      },
       bisaNext () {
         return this.nim && this.nama && this.alamat && this.noTelepon
       }
@@ -84,6 +109,7 @@
       previous () {
         this.$emit('previous')
       }
-    }
+    },
+    components: {Datepicker}
   }
 </script>

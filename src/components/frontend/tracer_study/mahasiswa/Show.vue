@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                   <th>Tempat Tanggal Lahir</th>
-                  <td>{{student.asal}}, {{student.tanggal_lahir}}</td>
+                  <td>{{student.tempat_lahir}}, {{student.tanggal_lahir}}</td>
                 </tr>
                 <tr>
                   <th>Alamat</th>
@@ -65,8 +65,12 @@
                   <td>-</td>
                 </tr>
                 <tr>
-                  <th>Tanggal Wisuda</th>
+                  <th>Tanggal Lulus</th>
                   <td>{{student.akademik.tanggal_lulus}}</td>
+                </tr>
+                <tr>
+                  <th>Angkatan Wisuda</th>
+                  <td>{{student.akademik.angkatan_wisuda}}</td>
                 </tr>
               </table>
             </div>

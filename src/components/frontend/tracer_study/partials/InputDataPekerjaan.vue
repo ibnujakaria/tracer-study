@@ -3,7 +3,7 @@
     <div>
       <h3>Pekerjaan</h3>
       <hr>
-      <pre>{{$store.state.mahasiswa.form.dataPekerjaan}}</pre>
+      <!-- <pre>{{$store.state.mahasiswa.form.dataPekerjaan}}</pre> -->
       <!-- <pre>{{selectedPekerjaan}}</pre> -->
       <div class="form-group">
         <label>Status Pekerjaan</label>
