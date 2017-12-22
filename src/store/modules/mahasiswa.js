@@ -25,13 +25,24 @@ export default {
       state.form = {
         dataPribadi: {nim: null, nama: null, alamat: null, no_telepon: null},
         dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
-        dataFoto: {foto: null}
+        dataFoto: {foto: null},
+        dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
       }
     }
   },
   actions: {
     cariMahasiswa (context, nim) {
       let url = 'mahasiswa/detail/' + nim
+      return Vue.http.get(url).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
+    getMahasiswa (context, payload) {
+      let url = 'mahasiswa/semua?api_token=' + context.getters.token
+
       return Vue.http.get(url).then(response => {
         return response
       }, response => {

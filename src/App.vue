@@ -33,12 +33,38 @@ export default {
     margin-top: 0;
   }
 
+  .burem {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .gede-kabeh {
+    text-transform: uppercase;
+  }
+
+  .gede-ngarepe {
+    text-transform: capitalize;
+  }
+
   .box {
     background-color: white;
     border-radius: 4px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     padding: 10px;
+  }
+
+  .boxes-container .box {
+    border-radius: 0px;
+  }
+
+  .boxes-container .box:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .boxes-container .box:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 
   .header-title p {
@@ -69,5 +95,9 @@ export default {
   .loading.show {
     visibility: visible;
     opacity: 0.5;
+  }
+
+  .no-padding {
+    padding: 0px !important;
   }
 </style>

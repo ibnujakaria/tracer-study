@@ -1,14 +1,19 @@
 <template>
   <div>
     <div class="box text-center" v-if="rows.length">
+      <p>
+        <i class="fa fa-check" style="color: green; font-size: 50pt"></i>
+      </p>
       <p style="font-size: 20pt">
         {{rows.length}} Mahasiswa berhasil ditambahkan
       </p>
+      <button class="btn btn-default" @click="reset">Kembali</button>
     </div>
     <div class="upload-container box" :class="{kesorot, 'upload-ijo': loading}" @dragenter="onDragEnter" @dragleave="onDragLeave" @dragover.prevent="onDragover" @drop.prevent="onDropped" v-else>
       <div class="upload-inner">
         <div class="upload-center">
           <template v-if="loading">
+            <i class="fa fa-upload" style="font-size: 50pt"></i>
             <p class="gede">Mengunggah..</p>
           </template>
           <template v-else>
@@ -75,6 +80,11 @@
         }, response => {
           this.loading = false
         })
+      },
+      reset () {
+        this.kesorot = false
+        this.loading = false
+        this.rows = []
       }
     }
   }

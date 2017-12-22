@@ -9,7 +9,7 @@
           </div>
           <ul class="nav navbar-nav">
             <li v-if="$store.getters.auth">
-              <router-link to="/mahasiswa/semua">Semua Mahasiswa</router-link>
+              <router-link to="/tracer-study/mahasiswa">Semua Mahasiswa</router-link>
             </li>
             <li><router-link to="/tracer-study">Cari Mahasiswa</router-link></li>
           </ul>
