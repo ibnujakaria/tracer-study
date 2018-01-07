@@ -62,13 +62,7 @@
       },
       readFile () {
         let file = this.$refs['input-el'].files[0]
-        let reader = new FileReader()
-
-        reader.onload = () => {
-          this.updloadData(reader.result)
-        }
-
-        reader.readAsDataURL(file)
+        this.updloadData(file)
       },
       updloadData (file) {
         let data = new FormData()
