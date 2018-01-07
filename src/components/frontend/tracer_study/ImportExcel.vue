@@ -13,14 +13,15 @@
       <div class="upload-inner">
         <div class="upload-center">
           <template v-if="loading">
-            <i class="fa fa-upload" style="font-size: 50pt"></i>
+            <!-- <i class="fa fa-upload" style="font-size: 50pt"></i> -->
+            <img src="/static/rocket.gif" style="width: 120px">
             <p class="gede">Mengunggah..</p>
           </template>
           <template v-else>
             <p class="gede">Geser file excel di sini</p>
             <p>atau</p>
             <div>
-              <input type="file" style="display: none" ref="input-el">
+              <input @change="readFile" type="file" style="display: none" ref="input-el">
               <button class="btn btn-default" @click="browseFile">Pilih File</button>
             </div>
           </template>
