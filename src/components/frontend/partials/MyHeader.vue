@@ -10,6 +10,14 @@
                 <p>
                   Platform Tracer Study ini digunakan sebagai tempat/portal di mana semua data alumni tersimpan di dalamnya. Data bisa digunakan untuk melihat pekerjaan alumni, data akademik, melanjutkan studi atau tidak, dan sebagainya.
                 </p>
+                <div class="btn-group">
+                  <router-link to="/tracer-study/create" class="btn btn-primary btn-lg">
+                    Tambah Mahasiswa
+                  </router-link>
+                  <!-- <router-link to="/tracer-study/tracer-study" class="btn btn-lg btn-default">
+                    Cari Mahasiswa
+                  </router-link> -->
+                </div>
               </div>
               <div class="col-sm-4">
                 <img src="../../../assets/mortarboard.png" style="width: 100%">
