@@ -8,10 +8,10 @@
             <router-link class="navbar-brand" to="/">Tracer Study</router-link>
           </div>
           <ul class="nav navbar-nav">
-            <li v-if="$store.getters.auth">
+            <li>
               <router-link to="/tracer-study/mahasiswa">Semua Mahasiswa</router-link>
             </li>
-            <li><router-link to="/tracer-study">Cari Mahasiswa</router-link></li>
+            <!-- <li><router-link to="/tracer-study">Cari Mahasiswa</router-link></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li v-if="!$store.getters.auth">

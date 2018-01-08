@@ -4,21 +4,34 @@
     <div v-else>
       <div class="panel panel-default">
         <div class="panel-body" v-if="student">
-          <h3>{{student.nama}} <small>{{student.nim}}</small> <button class="btn btn-small btn-default"><i class="fa fa-pencil"></i></button></h3>
+          <div style="overflow: hidden">
+            <h3 style="float: left">{{student.nama}} <small>{{student.nim}}</small> <button class="btn btn-small btn-default"><i class="fa fa-pencil"></i></button></h3>
+            <div style="float: right">
+              <div class="btn-group">
+                <button class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</button>
+                <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Import Excel</button>
+              </div>
+            </div>
+          </div>
           <hr>
           <div class="row">
             <div class="col-md-2">
-              <img class="avatar" :src="student.foto.foto_src" :alt="student.nama">
+              <img class="avatar" :src="student.foto.foto_src" :alt="student.nama" v-if="student.foto">
+              <img class="avatar" src="http://via.placeholder.com/350x350" v-else>
             </div>
             <div class="col-md-10">
               <table class="table">
+                <tr>
+                  <th>Nim</th>
+                  <td>{{student.nim}}</td>
+                </tr>
                 <tr>
                   <th>Nama</th>
                   <td>{{student.nama}}</td>
                 </tr>
                 <tr>
-                  <th>Nim</th>
-                  <td>{{student.nim}}</td>
+                  <th>Email</th>
+                  <td><a :href="'mailto:' + student.email">{{student.email}}</a></td>
                 </tr>
                 <tr>
                   <th>Fakultas</th>
@@ -35,10 +48,6 @@
                 <tr>
                   <th>Alamat</th>
                   <td>{{student.alamat}}</td>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <td><a :href="'mailto:' + student.email">{{student.email}}</a></td>
                 </tr>
               </table>
             </div>
@@ -59,10 +68,6 @@
                 <tr>
                   <th>IPK</th>
                   <td>{{student.akademik.nilai_ipk}}</td>
-                </tr>
-                <tr>
-                  <th>Lama Studi</th>
-                  <td>-</td>
                 </tr>
                 <tr>
                   <th>Tanggal Lulus</th>
@@ -116,5 +121,12 @@ export default {
 <style lang="css" scoped>
   img {
     width: 100%
+  }
+
+  tr {
+  }
+
+  tr td {
+    padding: 5px;
   }
 </style>

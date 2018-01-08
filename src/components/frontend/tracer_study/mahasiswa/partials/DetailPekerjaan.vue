@@ -7,7 +7,9 @@
         <table class="table">
           <tr>
             <th>Pekerjaan</th>
-            <td>{{pekerjaanPlaceholder.value}}</td>
+            <td>
+              <span>{{pekerjaanPlaceholder.value}}</span>
+            </td>
           </tr>
           <tr v-for="properti of pekerjaanPlaceholder.keterangan">
             <th>{{properti.label}}</th>
@@ -24,6 +26,9 @@
     props: ['student'],
     computed: {
       pekerjaanPlaceholder () {
+        if (!this.student.pekerjaan) {
+          return {keterangan: null, value: 'Tidak ada keterangan'}
+        }
         return this.$store.getters.getPekerjaanByKey(this.student.pekerjaan.status_pekerjaan)
       }
     }

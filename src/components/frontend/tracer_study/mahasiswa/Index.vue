@@ -9,6 +9,7 @@
           <div class="btn-group" style="margin-bottom: 20px; float: right">
             <!-- <button class="btn btn-default"><i class="fa fa-print"></i> Print</button> -->
             <button class="btn btn-default" @click="exportSemuaMahasiswa"><i class="fa fa-file-excel-o"></i> Export Data</button>
+            <router-link to="/tracer-study/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</router-link>
           </div>
         </div>
         <div class="row">
