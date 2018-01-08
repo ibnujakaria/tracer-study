@@ -1,14 +1,15 @@
 <template>
   <div class="mahasiswa">
     <div class="avatar" :class="{'avatar-loading': loading}">
-      <img :src="mahasiswa.foto.foto_src">
+      <img :src="mahasiswa.foto.foto_src" v-if="mahasiswa.foto">
+      <img src="http://via.placeholder.com/350x350" v-else>
     </div>
     <div class="deskripsi">
       <h2 :class="{'row-loading': loading}">{{mahasiswa.nama}}</h2>
       <div>
         <p class="burem" :class="{'row-loading': loading}">{{mahasiswa.nim}}</p>
       </div>
-      <p class="burem gede-ngarepe" :class="{'row-loading': loading}">{{mahasiswa.akademik.prodi}}</p>
+      <p class="burem gede-ngarepe" :class="{'row-loading': loading}" v-if="mahasiswa.akademik">{{mahasiswa.akademik.prodi}}</p>
     </div>
     <div class="aksi">
       <button class="btn btn-default"><i class="fa fa-pencil"></i></button>

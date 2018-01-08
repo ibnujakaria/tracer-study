@@ -7,8 +7,8 @@
         <div style="overflow: hidden">
           <h4 style="float: left">Filter Data</h4>
           <div class="btn-group" style="margin-bottom: 20px; float: right">
-            <button class="btn btn-default"><i class="fa fa-print"></i> Print</button>
-            <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Export Data</button>
+            <!-- <button class="btn btn-default"><i class="fa fa-print"></i> Print</button> -->
+            <button class="btn btn-default" @click="exportSemuaMahasiswa"><i class="fa fa-file-excel-o"></i> Export Data</button>
           </div>
         </div>
         <div class="row">
@@ -81,6 +81,9 @@
             this.firstLoad = false
           }
         })
+      },
+      exportSemuaMahasiswa () {
+        this.$store.dispatch('exportSemuaMahasiswa')
       }
     },
     components: {Mahasiswa}

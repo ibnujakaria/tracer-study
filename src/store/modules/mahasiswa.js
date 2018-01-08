@@ -50,6 +50,10 @@ export default {
         return response
       })
     },
+    exportSemuaMahasiswa (context, payload) {
+      let url = 'http://api.tracer-study.jagongoding.com/api/v1/mahasiswa/semua?export=excel&api_token=' + context.getters.token
+      window.open(url, '_blank')
+    },
     insertMahasiswaPribadi (context) {
       let url = 'mahasiswa/pribadi?api_token=' + context.getters.token
 
