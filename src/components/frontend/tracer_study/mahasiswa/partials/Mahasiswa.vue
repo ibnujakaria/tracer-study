@@ -9,7 +9,7 @@
       <div>
         <p class="burem" :class="{'row-loading': loading}">{{mahasiswa.nim}}</p>
       </div>
-      <p class="burem gede-ngarepe" :class="{'row-loading': loading}" v-if="mahasiswa.akademik">{{mahasiswa.akademik.prodi}}</p>
+      <p class="burem gede-ngarepe" :class="{'row-loading': loading}" v-if="mahasiswa.akademik">{{mahasiswa.akademik.prodi}} - Lulus <span style="text-transform: lowercase">di tahun {{mahasiswa.akademik.angkatan_wisuda}}</span></p>
     </div>
     <div class="aksi">
       <button class="btn btn-default"><i class="fa fa-pencil"></i></button>

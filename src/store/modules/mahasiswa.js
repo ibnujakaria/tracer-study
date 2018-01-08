@@ -41,9 +41,11 @@ export default {
       })
     },
     getMahasiswa (context, payload) {
-      let url = 'mahasiswa/semua?api_token=' + context.getters.token
+      let url = 'mahasiswa'
+      let params = payload
+      params.api_token = context.getters.token
 
-      return Vue.http.get(url).then(response => {
+      return Vue.http.get(url, {params}).then(response => {
         return response
       }, response => {
         alert('something went wrong')

@@ -13,18 +13,20 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <input type="" name="" class="form-control" placeholder="Cari berdasarkan nama/nim">
+            <input v-model="form.q" class="form-control" placeholder="Cari berdasarkan nama/nim">
           </div>
           <div class="col-md-4">
-            <select class="form-control">
-              <option>Semua Prodi</option>
-              <option>Jurusan</option>
+            <select class="form-control" v-model="form.prodi">
+              <option :value="null">Semua Prodi</option>
+              <option value="teknik-informatika">Teknik Informatika</option>
+              <option value="teknik-elektro">Teknik Elektro</option>
+              <option value="teknik-industri">Teknik Industri</option>
             </select>
           </div>
           <div class="col-md-4">
-            <select class="form-control" style="width: 200px; margin-right: 20px; display: inline-block">
-              <option>Semua Angkatan</option>
-              <option>Jurusan</option>
+            <select class="form-control" v-model="form.angkatan_wisuda" style="width: 200px; margin-right: 20px; display: inline-block">
+              <option :value="null">Semua Angkatan</option>
+              <option :value="value" v-for="value of angkatan">{{value}}</option>
             </select>
             <button class="btn btn-primary" @click="firstLoadAgain()">Filter</button>
           </div>
@@ -53,12 +55,27 @@
         total: 1,
         firstLoad: true,
         loading: true,
+        form: {
+          q: null,
+          prodi: null,
+          angkatan_wisuda: null
+        },
         mahasiswaPlaceholder: {
           nim: '123456789101212312313',
           nama: '123123123124123122',
           foto: {},
           akademik: {prodi: 'Loading.........'}
         }
+      }
+    },
+    computed: {
+      angkatan () {
+        let angkatan = []
+        for (let i = 2018; i > 2000; i--) {
+          angkatan.push(i)
+        }
+
+        return angkatan
       }
     },
     mounted () {
@@ -71,7 +88,7 @@
       },
       getListMahasiswa () {
         this.loading = true
-        this.$store.dispatch('getMahasiswa').then(response => {
+        this.$store.dispatch('getMahasiswa', this.form).then(response => {
           this.currentPage = response.body.message.current_page
           this.lastPage = response.body.message.last_page
           this.total = response.body.message.total
