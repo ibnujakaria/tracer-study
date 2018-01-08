@@ -6,6 +6,16 @@
           <h2>Tambah Mahasiswa</h2>
           <hr style="opacity: 0">
           <!-- <pre>{{$store.state.mahasiswa.form}}</pre> -->
+          <div class="text-right" style="margin-bottom: 10px">
+            <div class="btn-group">
+              <button @click="downloadTemplate" class="btn btn-default">
+                <i class="fa fa-download"></i> Download Template
+              </button>
+              <router-link class="btn btn-success" to="/tracer-study/import-excel">
+                <i class="fa fa-file-excel-o"></i> Import Excel
+              </router-link>
+            </div>
+          </div>
           <div class="form-wizard">        
             <div class="row" style="margin-bottom: 100px">
               <div class="col-md-3">
@@ -83,6 +93,9 @@
 
           this.loading = false
         })
+      },
+      downloadTemplate () {
+        window.open('/static/template-tracer-study.xlsx', '_blank')
       }
     },
     components: {InputDataPribadi, InputDataAkademik, InputDataPekerjaan, InputDataFoto, InsertStep}
