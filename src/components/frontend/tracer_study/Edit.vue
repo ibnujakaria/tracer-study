@@ -5,7 +5,8 @@
         <div v-if="!success">
           <h2>Edit Mahasiswa</h2>
           <hr style="opacity: 0">
-          <pre>{{student}}</pre>
+          <pre>{{student.pekerjaan}}</pre>
+          <pre>{{$store.state.mahasiswa.form.dataPekerjaan}}</pre>
           <div class="text-right" style="margin-bottom: 10px">
             <div class="btn-group">
               <button @click="downloadTemplate" class="btn btn-default">
@@ -38,7 +39,7 @@
           <div style="margin: 50px; color: green">
             <i class="fa fa-check" style="font-size: 50pt"></i>
           </div>
-          <h3>Data mahasiswa berhasil dimasukkan :)</h3>
+          <h3>Data mahasiswa berhasil diperbarui :)</h3>
           <router-link to="/tracer-study/mahasiswa">Kembali</router-link>
         </div>
       </div>
@@ -68,6 +69,8 @@
         key: 'dataPribadi.nim',
         value: this.$route.params.nim
       })
+
+      this.$store.commit('setFormMahasiswaMode', 'edit')
 
       this.getMahasiswa()
     },
@@ -120,10 +123,27 @@
             value: this.student.akademik[key]
           })
         }
+
+        // status pekerjaan
+        this.$store.commit('setMahasiswaCreateForm', {
+          key: 'dataPekerjaan.status_pekerjaan',
+          value: this.student.pekerjaan.status_pekerjaan.split(' ').join('-')
+        })
+
+        this.$store.commit('setMahasiswaCreateForm', {
+          key: 'dataPekerjaan.keterangan',
+          value: this.student.pekerjaan.keterangan
+        })
+
+        // foto
+        this.$store.commit('setMahasiswaCreateForm', {
+          key: 'dataFoto.foto',
+          value: this.student.foto.foto_src
+        })
       },
       submit () {
         this.loading = true
-        this.$store.dispatch('createMahasiswa').then(response => {
+        this.$store.dispatch('createMahasiswa', this.student.foto.foto_src).then(response => {
           if (response.status !== 200) {
             alert('Error')
           } else {

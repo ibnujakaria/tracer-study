@@ -5,7 +5,8 @@
       <hr>
       <div class="row">
         <div class="col-sm-7">
-          <img src="http://via.placeholder.com/350x350" style="width: 100%" ref="preview">
+          <img src="http://via.placeholder.com/350x350" style="width: 100%" ref="preview" v-if="!foto">
+          <img :src="foto" style="width: 100%" ref="preview" v-else>
         </div>
         <div class="col-sm-5">
           <input @change="fileLoaded" accept="image/*" type="file" ref="input" style="display: none">
@@ -40,6 +41,9 @@
           this.$store.commit('setMahasiswaCreateForm', {key: 'dataFoto.foto', value})
         }
       }
+    },
+    mounted () {
+      this.bisaNext = this.foto
     },
     methods: {
       fileLoaded () {

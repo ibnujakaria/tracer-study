@@ -7,7 +7,8 @@ export default {
       dataPribadi: {nim: null, nama: null, email: null, alamat: null, no_telepon: null, tempat_lahir: null, tanggal_lahir: null},
       dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
       dataFoto: {foto: null},
-      dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
+      dataPekerjaan: {status_pekerjaan: null, keterangan: {}},
+      edit: false
     },
     pekerjaan: listPekerjaan
   },
@@ -28,6 +29,9 @@ export default {
         dataFoto: {foto: null},
         dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
       }
+    },
+    setFormMahasiswaMode (state, mode) {
+      state.form.edit = mode === 'edit'
     }
   },
   actions: {
@@ -102,7 +106,7 @@ export default {
         return response
       })
     },
-    createMahasiswa (context) {
+    createMahasiswa (context, fotoSrc) {
       // pertama, insert mahasiswa pribadi. Terus kalau data sudah diinsert, baru masukkan yg akademik sama foto
       return context.dispatch('insertMahasiswaPribadi').then(response => {
         if (response.status !== 200) {
@@ -117,6 +121,12 @@ export default {
           return context.dispatch('insertMahasiswaPekerjaan').then(response => {
             if (response.status !== 200) {
               return response
+            }
+
+            // ini jika edit, dan fotonya tetep tidak diganti, maka langsung skip
+            if (fotoSrc && fotoSrc === context.state.form.dataFoto.foto) {
+              context.commit('resetMahasiswaCreateForm')
+              return {status: 200}
             }
 
             return context.dispatch('insertMahasiswaFoto').then(response => {
