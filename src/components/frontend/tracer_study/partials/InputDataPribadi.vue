@@ -12,6 +12,10 @@
         <input class="form-control" type="text" placeholder="Nama" v-model="nama">
       </div>
       <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" type="text" placeholder="Email" v-model="email">
+      </div>
+      <div class="form-group">
         <label>Nomor Telepon</label>
         <input class="form-control" type="text" placeholder="Nomor Telepon" v-model="noTelepon">
       </div>
@@ -20,7 +24,7 @@
         <input class="form-control" type="text" placeholder="Tempat Lahir" v-model="tempatLahir">
       </div>
       <div class="form-group">
-        <label>Tempat Lahir</label>
+        <label>Tanggal Lahir</label>
         <datepicker input-class="form-control" placeholder="Tanggal Lahir" v-model="tanggalLahir"></datepicker>
       </div>
       <div class="form-group">
@@ -68,6 +72,14 @@
         },
         set (value) {
           this.$store.commit('setMahasiswaCreateForm', {key: 'dataPribadi.nama', value})
+        }
+      },
+      email: {
+        get () {
+          return this.$store.state.mahasiswa.form.dataPribadi.email
+        },
+        set (value) {
+          this.$store.commit('setMahasiswaCreateForm', {key: 'dataPribadi.email', value})
         }
       },
       alamat: {

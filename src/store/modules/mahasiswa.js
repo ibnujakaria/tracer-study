@@ -4,7 +4,7 @@ import listPekerjaan from '../const/list-pekerjaan'
 export default {
   state: {
     form: {
-      dataPribadi: {nim: null, nama: null, alamat: null, no_telepon: null, tempat_lahir: null, tanggal_lahir: null},
+      dataPribadi: {nim: null, nama: null, email: null, alamat: null, no_telepon: null, tempat_lahir: null, tanggal_lahir: null},
       dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
       dataFoto: {foto: null},
       dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
@@ -23,7 +23,7 @@ export default {
     },
     resetMahasiswaCreateForm (state) {
       state.form = {
-        dataPribadi: {nim: null, nama: null, alamat: null, no_telepon: null},
+        dataPribadi: {nim: null, nama: null, email: null, alamat: null, no_telepon: null},
         dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
         dataFoto: {foto: null},
         dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
@@ -53,7 +53,7 @@ export default {
       })
     },
     exportSemuaMahasiswa (context, payload) {
-      let url = 'http://api.tracer-study.jagongoding.com/api/v1/mahasiswa/semua?export=excel&api_token=' + context.getters.token
+      let url = 'http://api.tracer-study.jagongoding.com/api/v1/mahasiswa?export=excel&api_token=' + context.getters.token
       window.open(url, '_blank')
     },
     insertMahasiswaPribadi (context) {

@@ -5,7 +5,12 @@
       <div class="panel panel-default">
         <div class="panel-body" v-if="student">
           <div style="overflow: hidden">
-            <h3 style="float: left">{{student.nama}} <small>{{student.nim}}</small> <button class="btn btn-small btn-default"><i class="fa fa-pencil"></i></button></h3>
+            <h3 style="float: left">
+              {{student.nama}} <small>{{student.nim}}</small> 
+              <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $route.params.nim}}" class="btn btn-small btn-default">
+                <i class="fa fa-pencil"></i>
+              </router-link>
+            </h3>
             <div style="float: right">
               <div class="btn-group">
                 <button class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</button>

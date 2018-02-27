@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-12">
         <div v-if="!success">
-          <h2>Tambah Mahasiswa</h2>
+          <h2>Edit Mahasiswa</h2>
           <hr style="opacity: 0">
-          <!-- <pre>{{$store.state.mahasiswa.form}}</pre> -->
+          <pre>{{student}}</pre>
           <div class="text-right" style="margin-bottom: 10px">
             <div class="btn-group">
               <button @click="downloadTemplate" class="btn btn-default">
@@ -59,14 +59,17 @@
       return {
         step: 1,
         loading: false,
-        success: false
+        success: false,
+        student: null
       }
     },
     mounted () {
       this.$store.commit('setMahasiswaCreateForm', {
         key: 'dataPribadi.nim',
-        value: this.$route.query.nim
+        value: this.$route.params.nim
       })
+
+      this.getMahasiswa()
     },
     methods: {
       changeStep (step) {
@@ -80,6 +83,42 @@
       previousStep () {
         if (this.step > 1) {
           this.step--
+        }
+      },
+      getMahasiswa () {
+        this.loading = true
+        this.$store.dispatch('cariMahasiswa', this.$route.params.nim).then(response => {
+          if (response.status === 200) {
+            this.student = response.body.message
+            this.loading = false
+
+            this.setNewDataToTheForm()
+          }
+        })
+      },
+      setNewDataToTheForm () {
+        // data pribadi
+        for (let key of ['nama', 'alamat', 'email', 'no_telepon', 'tempat_lahir', 'tanggal_lahir']) {
+          this.$store.commit('setMahasiswaCreateForm', {
+            key: 'dataPribadi.' + key,
+            value: this.student[key]
+          })
+        }
+
+        // data akademik
+        for (let key of ['prodi', 'angkatan_wisuda', 'tanggal_lulus', 'nilai_ipk']) {
+          if (key === 'prodi') {
+            this.$store.commit('setMahasiswaCreateForm', {
+              key: 'dataAkademik.' + key,
+              value: this.student.akademik[key].split(' ').join('-')
+            })
+            continue
+          }
+
+          this.$store.commit('setMahasiswaCreateForm', {
+            key: 'dataAkademik.' + key,
+            value: this.student.akademik[key]
+          })
         }
       },
       submit () {
