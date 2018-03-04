@@ -86,21 +86,54 @@ let router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  console.log(to)
-  if (to.meta.auth && !store.getters.auth) {
+let authMiddleware = function (to, from, next, user) {
+  // cek apakah ini mahasiswa dan butuh ganti password
+  let kecuali = [
+    '/settings/ganti-password', '/auth/logout'
+  ]
+
+  if (user.mahasiswa_login && user.mahasiswa_login.need_to_change_password && !kecuali.find(path => path === to.path)) {
+    console.log('Ini mahasiswa butuh ganti password')
     next({
-      path: '/auth/login',
-      query: {
-        to: to.path
-      }
+      path: '/settings/ganti-password'
     })
-  } else if (to.meta.guest && store.getters.auth) {
+  } else if (to.meta.guest) {
+    console.log('Ini page guest. Harus guest.')
     next({
       path: '/'
     })
   } else {
     next()
+  }
+}
+
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  if (store.getters.auth) {
+    if (store.state.auth.role === 'mahasiswa' && !store.getters.user.mahasiswa_login) {
+      console.log('data login belum ada')
+      store.dispatch('GET_AUTHENTICATED_USER').then(response => {
+        if (response.status !== 200) {
+          window.alert('Gagal mendapatkan user.')
+        } else {
+          authMiddleware(to, from, next, response.body.message)
+        }
+      })
+    } else {
+      console.log('data login sudah ada')
+      authMiddleware(to, from, next, store.getters.user)
+    }
+  } else {
+    if (to.meta.auth) {
+      next({
+        path: '/auth/login',
+        query: {
+          to: to.path
+        }
+      })
+    } else {
+      next()
+    }
   }
 })
 

@@ -13,7 +13,7 @@
               <strong>Login gagal</strong> <br>
               {{error}}
             </div>
-            <form @submit.prevent="register">
+            <form @submit.prevent="login" v-if="!loadingGetMahasiswa">
               <div class="form-group">
                 <label>Email atau Nim</label>
                 <input class="form-control" name="email" placeholder="Masukkan email atau nim" v-model="form.email">
@@ -33,6 +33,9 @@
                 </div>
               </div>
             </form>
+            <div v-else>
+              <p>Tunggu sebentar...</p>
+            </div>
           </div>
           <div class="loading" :class="{show: loading}"></div>
         </div>
@@ -50,15 +53,21 @@
           password: null
         },
         loading: false,
-        error: null
+        error: null,
+        loadingGetMahasiswa: false
       }
     },
     methods: {
-      register () {
+      login () {
         this.loadingStart()
         this.$store.dispatch('LOGIN', this.form).then(result => {
           if (result.status === 200) {
+            if (this.$store.state.auth.role === 'mahasiswa') {
+              this.loadingGetMahasiswa = true
+            }
+
             this.$router.push('/')
+            this.form = {email: null, password: null}
           } else if (result.status === 401) {
             this.error = 'Password atau email salah'
           }

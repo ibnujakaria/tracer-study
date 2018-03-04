@@ -12,6 +12,7 @@ const STORE = new Vuex.Store({
   },
   actions: {
     bootstrap (context) {
+      // get authenticated user sekarang juga dipanggil dari router/index.js@beforeEach
       context.dispatch('GET_AUTHENTICATED_USER')
     }
   }

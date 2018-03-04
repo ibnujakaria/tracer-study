@@ -91,7 +91,7 @@ export default {
       return Vue.http.get('mahasiswa/akun/detail', params).then((response) => {
         let mahasiswa = response.body.message
 
-        mahasiswa.username = mahasiswa.nim
+        mahasiswa.username = mahasiswa.nama
 
         context.commit('SET_AUTHENTICATED_USER', mahasiswa)
         return response
