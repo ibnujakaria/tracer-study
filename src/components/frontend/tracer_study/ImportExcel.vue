@@ -21,7 +21,7 @@
             <p class="gede">Geser file excel di sini</p>
             <p>atau</p>
             <div>
-              <input @change="readFile" type="file" style="display: none" ref="input-el">
+              <input @change="readFile" type="file" style="display: none" ref="input-el" accept=".xlsx">
               <button class="btn btn-default" @click="browseFile">Pilih File</button>
             </div>
           </template>
