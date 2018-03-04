@@ -15,8 +15,8 @@
             </div>
             <form @submit.prevent="register">
               <div class="form-group">
-                <label>Email</label>
-                <input class="form-control" type="email" name="email" placeholder="Masukkan email" v-model="form.email">
+                <label>Email atau Nim</label>
+                <input class="form-control" name="email" placeholder="Masukkan email atau nim" v-model="form.email">
               </div>
               <div class="form-group">
                 <label>Password</label>

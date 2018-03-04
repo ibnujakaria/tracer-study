@@ -3,12 +3,14 @@ import Snackbar from 'snackbar-js'
 
 let token = window.localStorage.getItem('token')
 let isLoggedIn = window.localStorage.getItem('isLoggedIn') === 'true'
+let role = window.localStorage.getItem('role')
 
 export default {
   state: {
     authenticatedUser: {},
     token: token || null,
-    isLoggedIn: isLoggedIn
+    isLoggedIn: isLoggedIn,
+    role: role
   },
   getters: {
     auth: state => state.isLoggedIn,
@@ -19,9 +21,12 @@ export default {
     LOGIN (state, payload) {
       state.token = payload.token
       state.authenticatedUser = payload.user
+      state.role = payload.role
       state.isLoggedIn = true
+
       window.localStorage.setItem('token', payload.token)
       window.localStorage.setItem('isLoggedIn', state.isLoggedIn + '')
+      window.localStorage.setItem('role', state.role)
     },
     SET_AUTHENTICATED_USER (state, payload) {
       state.authenticatedUser = payload
@@ -33,8 +38,11 @@ export default {
       state.token = null
       state.authenticatedUser = {}
       state.isLoggedIn = false
+      state.role = null
+
       window.localStorage.setItem('token', state.token)
       window.localStorage.setItem('isLoggedIn', state.isLoggedIn + '')
+      window.localStorage.setItem('role', null)
     }
   },
   actions: {
@@ -43,18 +51,49 @@ export default {
         console.log(response.body)
         context.commit('LOGIN', {
           user: response.body.message,
-          token: response.body.api_token
+          token: response.body.api_token,
+          role: 'admin'
         })
         context.dispatch('GET_AUTHENTICATED_USER')
         return response
       }, (response) => {
-        return response
+        // kalau gagal, dicoba loginnya login mahasiswa, hehe
+        payload.nim = payload.email
+        delete payload.email
+
+        return Vue.http.post('mahasiswa/akun/login', payload).then(response => {
+          console.log(response.body)
+          context.commit('LOGIN', {
+            user: response.body.message,
+            token: response.body.api_token_mhs,
+            role: 'mahasiswa'
+          })
+          context.dispatch('GET_AUTHENTICATED_USER')
+          return response
+        }, response => {
+          return response
+        })
       })
     },
     GET_AUTHENTICATED_USER (context) {
-      let params = {params: {api_token: context.state.token}}
-      return Vue.http.get('user/logged_in/' + context.state.token, params).then((response) => {
-        context.commit('SET_AUTHENTICATED_USER', response.body.message)
+      if (context.state.role !== 'mahasiswa') {
+        let params = {params: {api_token: context.state.token}}
+        return Vue.http.get('user/logged_in/' + context.state.token, params).then((response) => {
+          context.commit('SET_AUTHENTICATED_USER', response.body.message)
+          return response
+        }, (response) => {
+          // if gagal?
+          return response
+        })
+      }
+
+      let params = {params: {api_token_mhs: context.state.token}}
+      return Vue.http.get('mahasiswa/akun/detail', params).then((response) => {
+        let mahasiswa = response.body.message
+
+        mahasiswa.username = mahasiswa.nim
+
+        context.commit('SET_AUTHENTICATED_USER', mahasiswa)
         return response
       }, (response) => {
         // if gagal?

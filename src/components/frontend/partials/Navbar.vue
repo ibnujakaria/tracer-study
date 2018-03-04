@@ -18,7 +18,7 @@
               <router-link to="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</router-link>
             </li>
             <template v-else>
-              <li class="dropdown">
+              <li class="dropdown" v-if="$store.state.auth.role === 'admin'">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   <span class="fa fa-plus"></span>
                   <span class="caret"></span>
