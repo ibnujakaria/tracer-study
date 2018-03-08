@@ -11,6 +11,7 @@ import TracerStudyMahasiswa from '@/components/frontend/tracer_study/mahasiswa/I
 import AuthLogin from '@/components/frontend/auth/Login'
 import AuthRegister from '@/components/frontend/auth/Register'
 import AuthLogout from '@/components/frontend/auth/Logout'
+import GantiPassword from '@/components/frontend/settings/GantiPassword'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -79,6 +80,13 @@ let router = new Router({
     {
       path: '/auth/logout',
       component: AuthLogout,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/settings/ganti-password',
+      component: GantiPassword,
       meta: {
         auth: true
       }

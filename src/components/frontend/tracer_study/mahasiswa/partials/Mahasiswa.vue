@@ -11,7 +11,7 @@
       </div>
       <p class="burem gede-ngarepe" :class="{'row-loading': loading}" v-if="mahasiswa.akademik">{{mahasiswa.akademik.prodi}} - Lulus <span style="text-transform: lowercase">di tahun {{mahasiswa.akademik.angkatan_wisuda}}</span></p>
     </div>
-    <div class="aksi">
+    <div class="aksi" v-if="$store.getters.auth">
       <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: mahasiswa.nim}}" class="btn btn-default"><i class="fa fa-pencil"></i></router-link>
     </div>
   </div>

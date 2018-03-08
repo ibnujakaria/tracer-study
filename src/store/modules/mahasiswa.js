@@ -140,6 +140,13 @@ export default {
           })
         })
       })
+    },
+    changePassword (context, payload) {
+      return Vue.http.put('mahasiswa/akun/password?api_token_mhs=' + context.getters.token, payload).then(response => {
+        return context.dispatch('GET_AUTHENTICATED_USER')
+      }, response => {
+        return response
+      })
     }
   }
 }
