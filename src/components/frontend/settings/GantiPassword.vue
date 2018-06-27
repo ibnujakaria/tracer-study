@@ -25,7 +25,7 @@
               </div>
               <div class="form-group">
                 <label>Password</label>
-                <input class="form-control" type="password" placeholder="Masukkan password" v-model="form.password">
+                <input class="form-control" type="password" placeholder="Masukkan password" v-model="form.new_password">
               </div>
               <div class="row">
                 <div class="col-sm-6">
@@ -52,7 +52,7 @@
       return {
         form: {
           email: null,
-          password: null,
+          new_password: null,
           old_password: null
         },
         loading: false,
@@ -68,7 +68,7 @@
             this.error = response.body.message
           } else {
             this.form = {
-              email: null, password: null, old_password: null
+              email: null, new_password: null, old_password: null
             }
             this.success = 'Password berhasil diganti :)'
             this.$router.push({
