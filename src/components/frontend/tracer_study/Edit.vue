@@ -143,7 +143,10 @@
       },
       submit () {
         this.loading = true
-        this.$store.dispatch('createMahasiswa', this.student.foto.foto_src).then(response => {
+
+        let action = this.$store.state.auth.role === 'mahasiswa' ? 'editMahasiswaItself' : 'createMahasiswa'
+
+        this.$store.dispatch(action, this.student.foto ? this.student.foto.foto_src : null).then(response => {
           if (response.status !== 200) {
             alert('Error')
           } else {

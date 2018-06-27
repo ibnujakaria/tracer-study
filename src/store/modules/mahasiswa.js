@@ -27,7 +27,8 @@ export default {
         dataPribadi: {nim: null, nama: null, email: null, alamat: null, no_telepon: null},
         dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
         dataFoto: {foto: null},
-        dataPekerjaan: {status_pekerjaan: null, keterangan: {}}
+        dataPekerjaan: {status_pekerjaan: null, keterangan: {}},
+        edit: false
       }
     },
     setFormMahasiswaMode (state, mode) {
@@ -130,6 +131,87 @@ export default {
             }
 
             return context.dispatch('insertMahasiswaFoto').then(response => {
+              if (response.status !== 200) {
+                return response
+              }
+
+              context.commit('resetMahasiswaCreateForm')
+              return response
+            })
+          })
+        })
+      })
+    },
+    editMahasiswaPribadiItself (context) {
+      let url = 'mahasiswa/akun/pribadi?api_token_mhs=' + context.getters.token
+
+      return Vue.http.put(url, context.state.form.dataPribadi).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
+    editMahasiswaAkademikItself (context) {
+      let url = 'mahasiswa/akun/akademik?api_token_mhs=' + context.getters.token
+      let payload = JSON.parse(JSON.stringify(context.state.form.dataAkademik))
+      payload.nim = context.state.form.dataPribadi.nim
+
+      return Vue.http.put(url, payload).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
+    editMahasiswaPekerjaanItself (context) {
+      let url = 'mahasiswa/akun/pekerjaan?api_token_mhs=' + context.getters.token
+      let payload = JSON.parse(JSON.stringify(context.state.form.dataPekerjaan))
+      payload.nim = context.state.form.dataPribadi.nim
+
+      return Vue.http.put(url, payload).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
+    editMahasiswaFotoItself (context) {
+      let url = 'mahasiswa/akun/foto?api_token_mhs=' + context.getters.token
+      let payload = JSON.parse(JSON.stringify(context.state.form.dataFoto))
+      payload.nim = context.state.form.dataPribadi.nim
+
+      return Vue.http.post(url, payload).then(response => {
+        return response
+      }, response => {
+        alert('something went wrong')
+        return response
+      })
+    },
+    editMahasiswaItself (context, fotoSrc) {
+      // pertama, insert mahasiswa pribadi. Terus kalau data sudah diinsert, baru masukkan yg akademik sama foto
+      return context.dispatch('editMahasiswaPribadiItself').then(response => {
+        if (response.status !== 200) {
+          return response
+        }
+
+        return context.dispatch('editMahasiswaAkademikItself').then(response => {
+          if (response.status !== 200) {
+            return response
+          }
+
+          return context.dispatch('editMahasiswaPekerjaanItself').then(response => {
+            if (response.status !== 200) {
+              return response
+            }
+
+            // ini jika edit, dan fotonya tetep tidak diganti, maka langsung skip
+            if (fotoSrc && fotoSrc === context.state.form.dataFoto.foto) {
+              context.commit('resetMahasiswaCreateForm')
+              return {status: 200}
+            }
+
+            return context.dispatch('editMahasiswaFotoItself').then(response => {
               if (response.status !== 200) {
                 return response
               }

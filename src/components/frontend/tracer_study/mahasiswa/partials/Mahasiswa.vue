@@ -11,7 +11,7 @@
       </div>
       <p class="burem gede-ngarepe" :class="{'row-loading': loading}" v-if="mahasiswa.akademik">{{mahasiswa.akademik.prodi}} - Lulus <span style="text-transform: lowercase">di tahun {{mahasiswa.akademik.angkatan_wisuda}}</span></p>
     </div>
-    <div class="aksi" v-if="$store.getters.auth">
+    <div class="aksi" v-if="canEdit">
       <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: mahasiswa.nim}}" class="btn btn-default"><i class="fa fa-pencil"></i></router-link>
     </div>
   </div>
@@ -19,7 +19,20 @@
 
 <script type="text/javascript">
   export default {
-    props: ['mahasiswa', 'loading']
+    props: ['mahasiswa', 'loading'],
+    computed: {
+      canEdit () {
+        if (this.$store.getters.auth) {
+          if (this.$store.state.auth.role === 'mahasiswa') {
+            return this.$store.getters.user.nim === this.mahasiswa.nim
+          }
+
+          return true
+        }
+
+        return false
+      }
+    }
   }
 </script>
 

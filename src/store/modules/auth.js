@@ -47,6 +47,7 @@ export default {
   },
   actions: {
     LOGIN (context, payload) {
+      payload = { ...payload }
       return Vue.http.post('login', payload).then((response) => {
         console.log(response.body)
         context.commit('LOGIN', {

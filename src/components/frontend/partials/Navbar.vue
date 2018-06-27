@@ -32,6 +32,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$store.getters.user.username}}
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $store.getters.user.nim}}" v-if="$store.state.auth.role === 'mahasiswa'">Edit Data</router-link></li>
                   <li><router-link to="/auth/logout">Log out</router-link></li>
                 </ul>
               </li>
