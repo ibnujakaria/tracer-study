@@ -28,7 +28,10 @@ export default {
 
   html, body {
     font-family: 'Roboto', sans-serif;
+    padding: 0px;
+    margin: 0px;
   }
+
   h1, h2, h3,  h4, h5, h6 {
     margin-top: 0;
   }

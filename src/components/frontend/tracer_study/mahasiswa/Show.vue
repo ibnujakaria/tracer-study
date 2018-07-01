@@ -2,29 +2,29 @@
   <div>
     <detail-placeholder v-if="loading"></detail-placeholder>
     <div v-else>
-      <div class="panel panel-default">
+      <div class="panel panel-default padding-on-print">
         <div class="panel-body" v-if="student">
           <div style="overflow: hidden">
             <h3 style="float: left">
               {{student.nama}} <small>{{student.nim}}</small> 
-              <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $route.params.nim}}" class="btn btn-small btn-default">
+              <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $route.params.nim}}" class="btn btn-small btn-default dont-show-on-print">
                 <i class="fa fa-pencil"></i>
               </router-link>
             </h3>
             <div style="float: right">
-              <div class="btn-group">
-                <button class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</button>
-                <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Import Excel</button>
+              <div class="btn-group dont-show-on-print">
+                <button @click="print()" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</button>
+                <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Export Excel</button>
               </div>
             </div>
           </div>
           <hr>
-          <div class="row">
-            <div class="col-md-2">
+          <div class="row top-box">
+            <div class="col-md-2 float-left-on-print">
               <img class="avatar" :src="student.foto.foto_src" :alt="student.nama" v-if="student.foto">
               <img class="avatar" src="http://via.placeholder.com/350x350" v-else>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 float-left-on-print">
               <table class="table">
                 <tr>
                   <th>Nim</th>
@@ -117,6 +117,9 @@ export default {
           this.loading = false
         }
       })
+    },
+    print () {
+      window.print()
     }
   },
   components: {DetailPlaceholder, DetailPekerjaan}

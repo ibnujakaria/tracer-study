@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header-container">
     <header>
       <div class="container">
         <div class="row">
@@ -31,14 +31,18 @@
 </template>
 
 <style type="text/css" scoped>
-  header {
+  .header-container {
+    margin-top: -20px;
     background-color: black;
     background-image: url("https://www.transparenttextures.com/patterns/exclusive-paper.png");
+  }
+
+  header {
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
     color: rgb(240, 240, 240);
     transform: translateY(-20px);
     padding-top: 150px;
-    padding-bottom: 150px;
+    padding-bottom: 200px;
   }
 
   header h1 {
