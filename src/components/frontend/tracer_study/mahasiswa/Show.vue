@@ -4,7 +4,7 @@
     <div v-else>
       <div class="panel panel-default padding-on-print">
         <div class="panel-body" v-if="student">
-          <div style="overflow: hidden">
+          <div style="overflow: hidden" class="dont-show-on-print">
             <h3 style="float: left">
               {{student.nama}} <small>{{student.nim}}</small> 
               <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $route.params.nim}}" class="btn btn-small btn-default dont-show-on-print">
@@ -13,14 +13,14 @@
             </h3>
             <div style="float: right">
               <div class="btn-group dont-show-on-print">
-                <button @click="print()" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</button>
-                <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Export Excel</button>
+                <router-link :to="{name: 'tracer-study.print', params: {nim: $route.params.nim}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</router-link>
+                <!-- <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Export Excel</button> -->
               </div>
             </div>
           </div>
-          <hr>
+          <hr class="dont-show-on-print">
           <div class="row top-box">
-            <div class="col-md-2 float-left-on-print">
+            <div class="col-md-2 avatar-container-on-print">
               <img class="avatar" :src="student.foto.foto_src" :alt="student.nama" v-if="student.foto">
               <img class="avatar" src="http://via.placeholder.com/350x350" v-else>
             </div>
@@ -117,9 +117,6 @@ export default {
           this.loading = false
         }
       })
-    },
-    print () {
-      window.print()
     }
   },
   components: {DetailPlaceholder, DetailPekerjaan}

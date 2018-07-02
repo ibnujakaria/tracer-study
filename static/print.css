@@ -9,10 +9,20 @@ img.avatar {
 
 .top-box table {
   /*margin-left: 100px;*/
+  width: 80%;
 }
 
 .float-left-on-print {
   float: left;
+}
+
+.float-right-on-print {
+  float: right;
+}
+
+.avatar-container-on-print {
+  position: fixed;
+  right: 30px;
 }
 
 .dont-show-on-print {

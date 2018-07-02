@@ -4,6 +4,7 @@ import Welcome from '@/components/frontend/Welcome'
 import TracerStudyIndex from '@/components/frontend/tracer_study/Index'
 import TracerStudyMasukkanNim from '@/components/frontend/tracer_study/MasukkanNim'
 import TracerStudyDetail from '@/components/frontend/tracer_study/mahasiswa/Show'
+import TracerStudyPrint from '@/components/frontend/tracer_study/mahasiswa/Print'
 import TracerStudyCreate from '@/components/frontend/tracer_study/Create'
 import TracerStudyEdit from '@/components/frontend/tracer_study/Edit'
 import TracerStudyImportExcel from '@/components/frontend/tracer_study/ImportExcel'
@@ -42,6 +43,11 @@ let router = new Router({
           name: 'tracer-study.detail',
           path: 'detail/:nim',
           component: TracerStudyDetail
+        },
+        {
+          name: 'tracer-study.print',
+          path: 'detail/:nim/print',
+          component: TracerStudyPrint
         },
         {
           name: 'tracer-study.mahasiswa.edit',
