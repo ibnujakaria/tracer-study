@@ -3,6 +3,7 @@
     <div class="loading-container">
       <h3>Pribadi</h3>
       <hr>
+      <!-- <pre>{{ $store.state.mahasiswa.form.dataPribadi }}</pre> -->
       <div class="form-group">
         <label>Nim</label>
         <input class="form-control" type="text" placeholder="Nim" v-model="nim">

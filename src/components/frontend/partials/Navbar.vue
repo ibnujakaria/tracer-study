@@ -11,6 +11,9 @@
             <li>
               <router-link to="/tracer-study/mahasiswa">Semua Mahasiswa</router-link>
             </li>
+            <li v-if="$store.state.auth.role === 'admin'">
+              <router-link to="/kritik-dan-saran">Kritik dan Saran</router-link>
+            </li>
             <!-- <li><router-link to="/tracer-study">Cari Mahasiswa</router-link></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -32,8 +35,16 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$store.getters.user.username}}
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $store.getters.user.nim}}" v-if="$store.state.auth.role === 'mahasiswa'">Edit Data</router-link></li>
-                  <li><router-link to="/auth/logout">Log out</router-link></li>
+                  <li>
+                    <router-link to="/settings/kritik-dan-saran" v-if="$store.state.auth.role === 'mahasiswa'">Kritik dan Saran
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $store.getters.user.nim}}" v-if="$store.state.auth.role === 'mahasiswa'">Edit Data</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/auth/logout">Log out</router-link>
+                  </li>
                 </ul>
               </li>
             </template>

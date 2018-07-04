@@ -28,7 +28,7 @@
     <div style="position: absolute; right: 35px; bottom: 20px">
       <div class="btn-group">
         <button class="btn btn-default" @click="previous">Kembali</button>
-        <button class="btn btn-primary" @click="next">Lanjut</button>
+        <button class="btn btn-primary" :class="{ disabled: isDisabled }" @click="next" :disabled="isDisabled">Lanjut</button>
       </div>
     </div>
   </div>
@@ -58,6 +58,13 @@
         set (value) {
           this.$store.commit('setMahasiswaCreateForm', {key: 'dataPekerjaan.keterangan', value})
         }
+      },
+      isDisabled () {
+        if (this.$store.state.mahasiswa.form.edit) {
+          return this.statusPekerjaan === null && JSON.stringify(this.keterangan) === JSON.stringify({})
+        }
+
+        return false
       }
     },
     methods: {

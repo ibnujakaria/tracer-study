@@ -24,7 +24,7 @@ export default {
     },
     resetMahasiswaCreateForm (state) {
       state.form = {
-        dataPribadi: {nim: null, nama: null, email: null, alamat: null, no_telepon: null},
+        dataPribadi: {nim: null, nama: null, email: null, alamat: null, no_telepon: null, tempat_lahir: null, tanggal_lahir: null},
         dataAkademik: {prodi: null, angkatan_wisuda: null, tanggal_lulus: null, nilai_ipk: null},
         dataFoto: {foto: null},
         dataPekerjaan: {status_pekerjaan: null, keterangan: {}},
@@ -207,7 +207,7 @@ export default {
 
             // ini jika edit, dan fotonya tetep tidak diganti, maka langsung skip
             if (fotoSrc && fotoSrc === context.state.form.dataFoto.foto) {
-              context.commit('resetMahasiswaCreateForm')
+              // context.commit('resetMahasiswaCreateForm')
               return {status: 200}
             }
 
@@ -216,7 +216,7 @@ export default {
                 return response
               }
 
-              context.commit('resetMahasiswaCreateForm')
+              // context.commit('resetMahasiswaCreateForm')
               return response
             })
           })
@@ -226,6 +226,15 @@ export default {
     changePassword (context, payload) {
       return Vue.http.put('mahasiswa/akun/password?api_token_mhs=' + context.getters.token, payload).then(response => {
         return context.dispatch('GET_AUTHENTICATED_USER')
+      }, response => {
+        return response
+      })
+    },
+    putKrisar (context, { isi_krisar }) {
+      let url = `mahasiswa/akun/krisar?api_token_mhs=${context.getters.token}`
+
+      return Vue.http.put(url, { isi_krisar }).then(response => {
+        return response
       }, response => {
         return response
       })

@@ -13,6 +13,8 @@ import AuthLogin from '@/components/frontend/auth/Login'
 import AuthRegister from '@/components/frontend/auth/Register'
 import AuthLogout from '@/components/frontend/auth/Logout'
 import GantiPassword from '@/components/frontend/settings/GantiPassword'
+import InsertKritikDanSaran from '@/components/frontend/settings/InsertKritikDanSaran'
+import KritikDanSaranIndex from '@/components/frontend/KritikDanSaranIndex'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -93,6 +95,20 @@ let router = new Router({
     {
       path: '/settings/ganti-password',
       component: GantiPassword,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/settings/kritik-dan-saran',
+      component: InsertKritikDanSaran,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/kritik-dan-saran',
+      component: KritikDanSaranIndex,
       meta: {
         auth: true
       }
