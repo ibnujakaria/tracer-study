@@ -1,8 +1,8 @@
 # tracer-study
 
-> Project (KP) dari Fakultas Teknik Universitas Trunojoyo Madura
-> 
-> Ini adalah aplikasi client-side implementasi dari API yang bisa dilihat di repositori [ini](https://github.com/doelmi/Tracer-Study-Lumen)
+Project Kerja Praktek (KP) dari Fakultas Teknik Universitas Trunojoyo Madura
+ 
+Ini adalah aplikasi client-side implementasi dari API yang bisa dilihat di repositori [ini](https://github.com/doelmi/Tracer-Study-Lumen)
 
 ## Build Setup
 
