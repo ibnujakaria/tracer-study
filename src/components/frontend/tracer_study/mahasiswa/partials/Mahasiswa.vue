@@ -1,18 +1,39 @@
 <template>
   <div class="mahasiswa">
     <div class="avatar" :class="{'avatar-loading': loading}">
-      <img :src="mahasiswa.foto.foto_src" v-if="mahasiswa.foto">
-      <img src="http://via.placeholder.com/350x350" v-else>
+      <router-link :to="{name: 'tracer-study.detail', params: {nim: mahasiswa.nim}}">
+        <img :src="mahasiswa.foto.foto_src" v-if="mahasiswa.foto">
+        <img src="http://via.placeholder.com/350x350" v-else>
+      </router-link>
     </div>
     <div class="deskripsi">
-      <h2 :class="{'row-loading': loading}">{{mahasiswa.nama}}</h2>
+      <h2 :class="{'row-loading': loading}">
+        <router-link :class="{'row-loading': loading}" :to="{name: 'tracer-study.detail', params: {nim: mahasiswa.nim}}">
+          {{ mahasiswa.nama }}
+        </router-link>
+      </h2>
       <div>
         <p class="burem" :class="{'row-loading': loading}">{{mahasiswa.nim}}</p>
       </div>
       <p class="burem gede-ngarepe" :class="{'row-loading': loading}" v-if="mahasiswa.akademik">{{mahasiswa.akademik.prodi}} - Lulus <span style="text-transform: lowercase">di tahun {{mahasiswa.akademik.angkatan_wisuda}}</span></p>
     </div>
-    <div class="aksi" v-if="canEdit">
-      <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: mahasiswa.nim}}" class="btn btn-default"><i class="fa fa-pencil"></i></router-link>
+    <div class="aksi" v-if="canEdit || canDelete">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <!-- Dropdown -->
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li>
+            <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: mahasiswa.nim}}">
+              Edit
+            </router-link>
+          </li>
+          <li v-if="canDelete">
+            <a href="javascript:void(0)" @click="openDeleteModal()">Delete</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +52,23 @@
         }
 
         return false
+      },
+      canDelete () {
+        return this.$store.getters.auth
+      }
+    },
+    methods: {
+      openDeleteModal () {
+        if (confirm('Apakah anda yakin akan menghapus mahasiswa ini?')) {
+          this.deleteMahasiswa()
+        }
+      },
+      async deleteMahasiswa () {
+        this.$store.dispatch('deleteMahasiswa', this.mahasiswa).then(r => {
+          this.$emit('deleted')
+        }, r => {
+          this.$emit('deleted')
+        })
       }
     }
   }
@@ -85,7 +123,7 @@
   }
 
   .mahasiswa .row-loading, .avatar-loading {
-    color: transparent;
+    color: transparent !important;
     display: inline-block;
     margin-bottom: 2px;
     background: linear-gradient(90deg, 

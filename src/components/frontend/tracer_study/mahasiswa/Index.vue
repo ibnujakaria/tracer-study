@@ -33,10 +33,8 @@
           </div>
         </div>
       </div>
-      <div class="box no-padding" v-for="mahasiswa of mahasiswas">
-        <router-link :to="{name: 'tracer-study.detail', params: {nim: mahasiswa.nim}}" v-if="!loading && !firstLoad">
-          <mahasiswa :mahasiswa="mahasiswa"></mahasiswa>
-        </router-link>
+      <div class="box no-padding" v-for="mahasiswa of mahasiswas" v-if="!loading && !firstLoad">
+        <mahasiswa :mahasiswa="mahasiswa" @deleted="getListMahasiswa()"></mahasiswa>
       </div>
       <div class="box no-padding" v-if="loading && firstLoad" v-for="i of [1, 2, 3, 4]">
         <mahasiswa :mahasiswa="mahasiswaPlaceholder" :loading="true"></mahasiswa>

@@ -50,7 +50,7 @@ export default {
       let params = payload
       params.api_token = context.getters.token
 
-      return Vue.http.get(url, {params}).then(response => {
+      return Vue.http.get(url, { params }).then(response => {
         return response
       }, response => {
         alert('something went wrong')
@@ -237,6 +237,17 @@ export default {
         return response
       }, response => {
         return response
+      })
+    },
+    deleteMahasiswa (context, mahasiswa) {
+      let url = `mahasiswa/pribadi/${mahasiswa.nim}`
+
+      // `mahasiswa/akademik/${mahasiswa.nim}`,
+      // `mahasiswa/pekerjaan/${mahasiswa.nim}`,
+      // `mahasiswa/foto/${mahasiswa.nim}`
+
+      return Vue.http.delete(`${url}?api_token=${context.getters.token}`).then(r => {
+        return r
       })
     }
   }
