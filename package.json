@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "start": "node build/build.js && node build/server.js",
+    "postinstall": "node build/build.js",
+    "start": "node build/server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
   },
