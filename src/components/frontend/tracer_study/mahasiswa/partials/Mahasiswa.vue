@@ -54,7 +54,7 @@
         return false
       },
       canDelete () {
-        return this.$store.getters.auth
+        return this.$store.getters.auth && this.$store.state.auth.role === 'admin'
       }
     },
     methods: {
