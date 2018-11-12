@@ -1,0 +1,38 @@
+@page {
+  size: A4;
+  padding-top: 40px;
+}
+
+img.avatar {
+  width: 100px !important;
+}
+
+.top-box table {
+  /*margin-left: 100px;*/
+  width: 80%;
+}
+
+.float-left-on-print {
+  float: left;
+}
+
+.float-right-on-print {
+  float: right;
+}
+
+.avatar-container-on-print {
+  position: fixed;
+  right: 30px;
+}
+
+.dont-show-on-print {
+  display: none;
+}
+
+.padding-on-print {
+  margin-top: 20px;
+}
+
+#snackbar {
+  display: none !important;
+}
