@@ -11,7 +11,7 @@
             <button class="btn btn-default" @click="exportSemuaMahasiswa" v-if="$store.getters.auth && $store.state.auth.role === 'admin'">
               <i class="fa fa-file-excel-o"></i> Export Data
             </button>
-            <router-link to="/tracer-study/create" class="btn btn-primary">
+            <router-link to="/tracer-study/create" class="btn btn-primary" v-if="$store.getters.auth && $store.state.auth.role === 'admin'">
               <i class="fa fa-plus"></i> Tambah Data
             </router-link>
           </div>
