@@ -7,9 +7,7 @@
         <label>Program Studi</label>
         <select class="form-control" v-model="prodi">
           <option value="null">Pilih Program Studi</option>
-          <option value="teknik-informatika">Teknik Informatika</option>
-          <option value="teknik-industri">Teknik Industri</option>
-          <option value="teknik-elektro">Teknik Elektro</option>
+          <option :value="p.slug" v-for="p of prodis" :key="p.id">{{ p.nama_prodi }}</option>
         </select>
       </div>
       <div class="form-group">
@@ -75,6 +73,9 @@
         set (value) {
           this.$store.commit('setMahasiswaCreateForm', {key: 'dataAkademik.nilai_ipk', value})
         }
+      },
+      prodis () {
+        return this.$store.state.prodi.prodis
       },
       years () {
         let years = []
