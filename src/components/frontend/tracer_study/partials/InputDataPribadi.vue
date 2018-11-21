@@ -6,7 +6,7 @@
       <!-- <pre>{{ $store.state.mahasiswa.form.dataPribadi }}</pre> -->
       <div class="form-group">
         <label>Nim</label>
-        <input class="form-control" type="text" placeholder="Nim" v-model="nim">
+        <input class="form-control" type="text" placeholder="Nim" v-model="nim" :disabled="isEditMode">
       </div>
       <div class="form-group">
         <label>Nama</label>
@@ -109,6 +109,9 @@
       },
       bisaNext () {
         return this.nim && this.nama && this.alamat && this.noTelepon
+      },
+      isEditMode () {
+        return this.$route.name === 'tracer-study.mahasiswa.edit'
       }
     },
     methods: {
