@@ -5,10 +5,9 @@
         <h2>Kritik dan Saran</h2>
         <ol class="breadcrumb">
           <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="#">Settings</router-link></li>
-          <li><router-link to="#">Ganti Password</router-link></li>
+          <li><router-link to="#">Kritik dan Saran</router-link></li>
         </ol>
-        <div v-for="krisar of listKrisar">
+        <div v-for="krisar of listKrisar" :key="krisar.id">
           <div class="panel panel-default loading-container">
             <div class="panel-body">
               <div class="row">
