@@ -23,9 +23,7 @@
           <div class="col-md-4">
             <select class="form-control" v-model="form.prodi">
               <option :value="null">Semua Prodi</option>
-              <option value="teknik-informatika">Teknik Informatika</option>
-              <option value="teknik-elektro">Teknik Elektro</option>
-              <option value="teknik-industri">Teknik Industri</option>
+              <option :value="prodi.slug" v-for="prodi of prodis" :key="prodi.id">{{ prodi.nama_prodi }}</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -79,6 +77,9 @@
         }
 
         return angkatan
+      },
+      prodis () {
+        return this.$store.state.prodi.prodis
       }
     },
     mounted () {

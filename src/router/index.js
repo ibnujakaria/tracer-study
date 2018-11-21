@@ -15,6 +15,8 @@ import AuthLogout from '@/components/frontend/auth/Logout'
 import GantiPassword from '@/components/frontend/settings/GantiPassword'
 import InsertKritikDanSaran from '@/components/frontend/settings/InsertKritikDanSaran'
 import KritikDanSaranIndex from '@/components/frontend/KritikDanSaranIndex'
+import ProdiIndex from '@/components/frontend/prodi/Index'
+import ProdiCreate from '@/components/frontend/prodi/Create'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -102,6 +104,20 @@ let router = new Router({
     {
       path: '/settings/kritik-dan-saran',
       component: InsertKritikDanSaran,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/prodi',
+      component: ProdiIndex,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/prodi/create',
+      component: ProdiCreate,
       meta: {
         auth: true
       }

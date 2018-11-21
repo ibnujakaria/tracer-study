@@ -14,6 +14,9 @@
             <li v-if="$store.state.auth.role === 'admin'">
               <router-link to="/kritik-dan-saran">Kritik dan Saran</router-link>
             </li>
+            <li v-if="$store.state.auth.role === 'admin'">
+              <router-link to="/prodi">Prodi</router-link>
+            </li>
             <!-- <li><router-link to="/tracer-study">Cari Mahasiswa</router-link></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
