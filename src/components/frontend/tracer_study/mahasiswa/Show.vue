@@ -111,7 +111,7 @@ export default {
   computed: {
     meOrAdmin () {
       return this.$store.getters.auth &&
-        (this.$store.state.auth.role === 'admin' || this.$store.getters.user.id === this.student.id)
+        (this.$store.state.auth.role === 'admin' || this.$store.getters.user.nim === this.student.nim)
     }
   },
   mounted () {
