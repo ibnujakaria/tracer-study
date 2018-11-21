@@ -7,13 +7,15 @@
           <div style="overflow: hidden" class="dont-show-on-print">
             <h3 style="float: left">
               {{student.nama}} <small>{{student.nim}}</small> 
-              <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $route.params.nim}}" class="btn btn-small btn-default dont-show-on-print">
+              <router-link :to="{name: 'tracer-study.mahasiswa.edit', params: {nim: $route.params.nim}}" class="btn btn-small btn-default dont-show-on-print" v-if="meOrAdmin">
                 <i class="fa fa-pencil"></i>
               </router-link>
             </h3>
             <div style="float: right">
               <div class="btn-group dont-show-on-print">
-                <router-link :to="{name: 'tracer-study.print', params: {nim: $route.params.nim}}" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Print</router-link>
+                <router-link :to="{name: 'tracer-study.print', params: {nim: $route.params.nim}}" class="btn btn-default" v-if="meOrAdmin">
+                  <i class="fa fa-file-pdf-o"></i> Print
+                </router-link>
                 <!-- <button class="btn btn-default"><i class="fa fa-file-excel-o"></i> Export Excel</button> -->
               </div>
             </div>
@@ -103,6 +105,12 @@ export default {
     return {
       loading: true,
       student: null
+    }
+  },
+  computed: {
+    meOrAdmin () {
+      return this.$store.getters.auth &&
+        (this.$store.state.auth.role === 'admin' || this.$store.getters.user.id === this.student.id)
     }
   },
   mounted () {
