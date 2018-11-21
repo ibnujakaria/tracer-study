@@ -35,7 +35,12 @@
         </tr>
         <tr>
           <td>TEMPAT, TANGGAL LAHIR</td>
-          <td>{{ student.tempat_lahir }}, {{ student.tanggal_lahir }}</td>
+          <td v-if="student.tempat_lahir && student.tempat_lahir !== '-'">
+            {{ student.tempat_lahir }}, {{ student.tanggal_lahir }}
+          </td>
+          <td v-else>
+            Tidak ada data
+          </td>
         </tr>
         <tr>
           <td>NO TELEPON</td>
@@ -90,24 +95,28 @@ export default {
     },
     pekerjaan () {
       if (this.student) {
-        let pekerjaan = this.student.pekerjaan
-        let statusPekerjaan = pekerjaan.status_pekerjaan
+        try {
+          let pekerjaan = this.student.pekerjaan
+          let statusPekerjaan = pekerjaan.status_pekerjaan
 
-        switch (statusPekerjaan) {
-          case 'pns':
-            return `PNS, jabatan ${pekerjaan.keterangan.jabatan}`
-          case 'tni':
-            return `TNI, jabatan ${pekerjaan.keterangan.jabatan}`
-          case 'instansi':
-            return `Bekerja di ${pekerjaan.keterangan.perusahaan} sebagai ${pekerjaan.keterangan.sebagai}`
-          case 'pengusaha':
-            return `Pengusaha di sektor ${pekerjaan.keterangan.sektor_usaha} <br> Nama usaha: ${pekerjaan.keterangan.nama_usaha}`
-          case 'lanjut-studi':
-            return `Lanjut studi ${pekerjaan.keterangan.jenjang.toUpperCase()} di ${pekerjaan.keterangan.universitas} prodi ${pekerjaan.keterangan.prodi}`
-          case 'belum-bekerja':
-            return 'Belum bekerja'
-          default:
-            return 'Tidak ada'
+          switch (statusPekerjaan) {
+            case 'pns':
+              return `PNS, jabatan ${pekerjaan.keterangan.jabatan}`
+            case 'tni':
+              return `TNI, jabatan ${pekerjaan.keterangan.jabatan}`
+            case 'instansi':
+              return `Bekerja di ${pekerjaan.keterangan.perusahaan} sebagai ${pekerjaan.keterangan.sebagai}`
+            case 'pengusaha':
+              return `Pengusaha di sektor ${pekerjaan.keterangan.sektor_usaha} <br> Nama usaha: ${pekerjaan.keterangan.nama_usaha}`
+            case 'lanjut-studi':
+              return `Lanjut studi ${pekerjaan.keterangan.jenjang.toUpperCase()} di ${pekerjaan.keterangan.universitas} prodi ${pekerjaan.keterangan.prodi}`
+            case 'belum-bekerja':
+              return 'Belum bekerja'
+            default:
+              return 'Tidak ada'
+          }
+        } catch (e) {
+          return 'Tidak ada'
         }
       }
 
