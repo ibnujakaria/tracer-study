@@ -155,7 +155,7 @@ export default {
     width: 150px;
     height: 200px;
     margin-bottom: 30px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: left top;
   }
 </style>
