@@ -50,7 +50,8 @@
                 </tr>
                 <tr>
                   <th>Tempat Tanggal Lahir</th>
-                  <td>{{student.tempat_lahir}}, {{student.tanggal_lahir}}</td>
+                  <td v-if="student.tempat_lahir && student.tempat_lahir !== '-'">{{ student.tempat_lahir }}, {{ student.tanggal_lahir }}</td>
+                  <td v-else>Tidak ada data</td>
                 </tr>
                 <tr>
                   <th>Alamat</th>
