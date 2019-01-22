@@ -72,7 +72,7 @@
     computed: {
       angkatan () {
         let angkatan = []
-        for (let i = 2018; i > 2000; i--) {
+        for (let i = new Date().getFullYear() + 2; i > 2000; i--) {
           angkatan.push(i)
         }
 

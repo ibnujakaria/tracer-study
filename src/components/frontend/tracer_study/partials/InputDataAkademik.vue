@@ -80,7 +80,7 @@
       years () {
         let years = []
 
-        for (let i = 2000; i <= 2018; i++) {
+        for (let i = 2000; i <= new Date().getFullYear() + 2; i++) {
           years.push(i)
         }
 
