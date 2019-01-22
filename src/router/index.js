@@ -22,6 +22,8 @@ import store from '../store/index.js'
 Vue.use(Router)
 
 let router = new Router({
+  mode: 'history',
+  base: 'tracer-study',
   routes: [
     {
       path: '/',
